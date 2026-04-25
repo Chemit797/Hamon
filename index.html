@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>自控系統</title>
+<title>Hamon</title>
 
 <!-- PWA: iOS Safari meta tags -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="自控系統">
+<meta name="apple-mobile-web-app-title" content="Hamon">
 <meta name="theme-color" content="#ffffff">
 <meta name="mobile-web-app-capable" content="yes">
 
@@ -16,8 +16,8 @@
 <script>
 (function(){
   var manifest={
-    name:'自控系統 · CTDP+RSIP',
-    short_name:'自控',
+    name:'Hamon',
+    short_name:'Hamon',
     start_url:window.location.href,
     display:'standalone',
     background_color:'#ffffff',
@@ -482,7 +482,7 @@ input,select{font-family:'DM Sans',sans-serif;outline:none}
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <div class="brand">自控 <span>·</span> CTDP</div>
+  <div class="brand">Hamon</div>
   <div class="nav-chips">
     <div class="nchip" style="color:var(--elite)"><div class="nchip-dot" style="background:var(--elite)"></div><span id="nElite">精锐 #0</span></div>
     <div class="nchip" style="color:var(--normal)"><div class="nchip-dot" style="background:var(--normal)"></div><span id="nNormal">普通 #0</span></div>
@@ -759,7 +759,7 @@ input,select{font-family:'DM Sans',sans-serif;outline:none}
 
 <script>
 // ══ STATE ══
-var S=JSON.parse(localStorage.getItem('ctdp_v12')||'null')||{
+var S=JSON.parse(localStorage.getItem('ctdp_v13')||'null')||{
   phase:'setup',step:0,
   seatElite:'',seatNormal:'',dur:25,rest:10,
   eliteChain:0,eliteWeek:-1,eliteYear:new Date().getFullYear(),
@@ -768,7 +768,7 @@ var S=JSON.parse(localStorage.getItem('ctdp_v12')||'null')||{
   tasks:[],wkTasks:[],policies:[],prec:[],log:[],pid:1,
   frozen:false,frozenIds:[],frozenUntil:'',stats:{}
 };
-function sv(){localStorage.setItem('ctdp_v12',JSON.stringify(S))}
+function sv(){localStorage.setItem('ctdp_v13',JSON.stringify(S))}
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
 function fmT(ts){var d=new Date(ts);return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
 function fmD(ts){return new Date(ts).toLocaleDateString()}
@@ -1436,7 +1436,7 @@ function setDur(d){S.dur=d;sv();document.getElementById('cfg-dur-lbl').textConte
 function setRest(r){S.rest=r;sv();document.getElementById('cfg-rest-lbl').textContent=r;notify('休息时长 '+r+' 分钟');}
 function exportData(){var b=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ctdp_'+new Date().toISOString().slice(0,10)+'.json';a.click();}
 function importData(inp){var f=inp.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{var d=JSON.parse(ev.target.result);if(d.phase!==undefined){S=d;sv();location.reload();}}catch(x){notify('文件格式错误');}};r.readAsText(f);}
-function resetAll(){if(!confirm('确认重置？'))return;if(!confirm('再次确认：所有数据永久删除'))return;localStorage.removeItem('ctdp_v12');location.reload();}
+function resetAll(){if(!confirm('确认重置？'))return;if(!confirm('再次确认：所有数据永久删除'))return;localStorage.removeItem('ctdp_v13');location.reload();}
 
 // ══ NOTIFY ══
 var notTO;
